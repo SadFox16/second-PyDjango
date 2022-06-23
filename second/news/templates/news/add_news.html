@@ -1,0 +1,20 @@
+{% extends 'base.html' %} <!--наследуем шаблон base.html-->
+
+{% block title %}
+Добавление новости: {{block.super}} <!--наследуем тайтл новости и выводим его"-->
+{% endblock %}
+
+{% block sidebar %} <!--наследуем переопределяем сайдбар-->
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %} <!--наследуем и переопределяем контент для формы добавления новости-->
+<h1>Добавление новости</h1>
+
+<form action="{% url 'add_news' %}" method = "post">  <!--форма добавления новости-->
+    {% csrf_token %} <!--разрешаем форме отправлять данные в бд-->
+    {{ form.as_p }} <!--НЕ ВЫВОДИТСЯ!!!!!!! выводим саму форму c полями-->
+    <button type="submit" class="btn btn-primary btn-block">Добавить новость</button> <!--кнопка добавления новости-->
+</form>
+
+{% endblock %}

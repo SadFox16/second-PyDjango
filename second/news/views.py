@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import News, Category
+from .forms import NewsForm
 
 #функции для страниц
 
@@ -23,3 +24,10 @@ def view_news(request, news_id): #функция для просмотра но�
    # news_item = News.objects.get(pk=news_id) #получаем запрошенную новость по id
     news_item = get_object_or_404(News, pk=news_id)
     return render(request, 'news/view_news.html', {"news_item": news_item})
+
+def add_news(request): #функция для формы добавления новости
+    if request.method == 'POST':
+        pass
+    else:
+        form = NewsForm()
+    return render(request, 'news/add_news.html', {'form': form})
