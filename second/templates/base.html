@@ -12,9 +12,8 @@
 <body>
 
 {% include 'inc/_nav.html' %} <!--подключаем navbar-->
-
+<ul class="text-secondary">Cегодня {% now "d-m-Y H:i" %}</ul> <!--вывод текущей даты и времени(д-м-г ч-м)-->
 <div class="container mt-3"> <!--контейнер для форматированного вывода новостей, используем карточки из bootstrap-->
-    <ul class="text-secondary">Cегодня {% now "d-m-Y H:i" %}</ul> <!--вывод текущей даты и времени(д-м-г ч-м)-->
     <div class="row">
         <div class="col-dm-3">
             {% block sidebar %} Сайдбар {% endblock %}

@@ -1,0 +1,13 @@
+<!--Экземпляр сайдбара для include-->
+
+{% load news_tags %} <!--подключаем пользовательский тег-->
+{% comment %}
+<div class="list-group"> <!-- сайдбар с категориями -->
+    {% get_list_categories as categories %} <!--получаем список категорий по пользовательскому тегу-->
+    {% for item in categories %} <!-- Выводим категории с помощью цикла -->
+    <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a><!-- выводим названия категорий -->
+    {% endfor %}
+</div>
+<br>
+{% endcomment %}
+{% show_categories %} <!--Сайдбар с категориями-->
