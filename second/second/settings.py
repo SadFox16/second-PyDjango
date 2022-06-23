@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ #приложения сайта
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'ru' #язык сайта
 
 TIME_ZONE = 'UTC'
 
@@ -116,12 +116,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/' #константа - добавляет префикс к адресу статического файла
+STATIC_ROOT = OOT = os.path.join(BASE_DIR, 'static') #константа - указывает путь к папке со статическими файлами
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'second/static'), #константа - перечисляет пути к дополнительным папкам со статическими файлами
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #константа - указывает путь к папке с медиа-контентом
+MEDIA_URL = '/media/' #константа - добавляет префикс к адресу медиа-файла
