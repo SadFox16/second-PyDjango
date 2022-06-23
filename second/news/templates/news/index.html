@@ -1,0 +1,47 @@
+{% extends 'base.html' %} <!--наследуем шаблон base.html-->
+
+{% block title %}
+{{title}}: {{block.super}} <!--наследуем тайтл и добавляем к нему надпись "Список новостей"-->
+{% endblock %}
+
+{% block sidebar %} <!--наследуем переопределяем сайдбар-->
+<!-- сайдбар с категориями -->
+<div class="list-group">
+    <ul>Категории</ul>
+    {% for item in categories %} <!-- Выводим категории с помощью цикла -->
+    <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+    <!-- выводим названия категорий -->
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block content %} <!--наследуем и переопределяем контент-->
+<!-- Кол-во колонок для новостей -->
+{% for item in news %} <!--выводим новости с помощью цикла-->
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{% url 'category' item.category.pk %}">{{ item.category }}</a>
+        <!--делаем кликабельным название категории-->
+    </div>
+    <div class="card-body">
+        <div class="media">
+            {% if item.photo %} <!--если у статьи есть фото - выводим, иначе ничего не выводим-->
+            <img src="{{ item.photo.url }}" alt="Фото статьи" width="350" class="mr-3">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h5>
+                <!--чередование цветов заголовка-->
+                <p class="card-text">{{ item.content|linebreaks|truncatewords:60 }}</p>
+                <a href="#" class="btn btn-primary">Read more...</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        {{ item.created_date|date:"d-m-Y H:i" }} <!-- Форматированный вывод времени создания статьи -->
+    </div>
+</div>
+{% empty %}
+Oops...
+{% endfor %}
+{% endblock %}
