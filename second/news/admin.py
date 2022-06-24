@@ -10,6 +10,7 @@ class NewsAdmin(admin.ModelAdmin): #класс для редактировани
     list_filter = ('is_published', 'category') #по каким полям доступно фильтрование
     fields = ('title', 'category', 'content', 'photo', 'created_date', 'updated_date', 'is_published', 'views_count')
     readonly_fields = ('views_count', 'created_date', 'updated_date')
+    save_on_top = True
 
 class CategoryAdmin(admin.ModelAdmin):  #класс для редактирования внешнего вида таблицы Category в админке
         list_display = ('id', 'title')  #что отображать в таблице на странице админки

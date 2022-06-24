@@ -3,17 +3,20 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from .models import News, Category
 from .forms import NewsForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #классы для страниц
 class HomeNews(ListView): #возвращает список новостей, переопределяем аттрибуты, остальной рендер за нас делает класс
     model = News #получаем все данные из таблицы News
     template_name = 'news/home_news_list.html' #указываем какой шаблон использовать
-    context_object_name= 'news'
+    context_object_name = 'news'
+    mixin_prop = 'hello world'
     #extra_context = {'title': 'Главная'}
 
     def get_context_data(self, *, object_list=None, **kwargs): #переопределяем метод для вывода title в имени вкладки
         context = super(HomeNews, self).get_context_data(**kwargs)
         context['title'] = 'Главная страница'
+        #context['mixin_prop'] = self.get_prop()
         return context
 
     def get_queryset(self): #метод для фильтрования выводимых записей
@@ -42,11 +45,12 @@ class ViewNews(DetailView): #класс для страницы просмотр
     context_object_name = 'news_item'
 
 
-class CreateNews(CreateView): #класс для формы создания новости
+class CreateNews(LoginRequiredMixin, CreateView): #класс для формы создания новости
     form_class = NewsForm #связываем класс с классом формы
     template_name = 'news/add_news.html' #указываем какой шаблон использовать
     success_url = reverse_lazy('home') #редирект после добавления новой новости
-
+    #login_url = '/admin/'
+    raise_exception = True #ограничиваем доступ к форме добавления новости
 
 
 #функции для страниц
