@@ -27,6 +27,9 @@ urlpatterns = [ #список общих url-ов(маршрутов)
 
 
 if settings.DEBUG: #маршрут для медиа-файлов в отладочном режиме(до выгрузки на сервер)
+    import debug_toolbar
+
+    urlpatterns = [path('__debug__/', include('debug_toolbar.urls')), ] + urlpatterns
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

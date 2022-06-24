@@ -17,7 +17,7 @@ class HomeNews(ListView): #возвращает список новостей, �
         return context
 
     def get_queryset(self): #метод для фильтрования выводимых записей
-        return News.objects.filter(is_published=True) #выводим только опубликованные записи
+        return News.objects.filter(is_published=True).select_related('category') #выводим только опубликованные записи
 
 
 class NewsByCategory(ListView): #выводит статьи при выборе определенной категории
@@ -32,7 +32,7 @@ class NewsByCategory(ListView): #выводит статьи при выборе
         return context
 
     def get_queryset(self): #метод для фильтрования выводимых записей
-        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True) #выводим записи только выбранной категории
+        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category') #выводим записи только выбранной категории
 
 
 class ViewNews(DetailView): #класс для страницы просмотра новости
