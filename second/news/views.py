@@ -1,17 +1,46 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
 from .models import News, Category
 from .forms import NewsForm
 
-#функции для страниц
+#классы для страниц
+class HomeNews(ListView): #возвращает список новостей, переопределяем аттрибуты, остальной рендер за нас делает класс
+    model = News #получаем все данные из таблицы News
+    template_name = 'news/home_news_list.html' #указываем какой шаблон использовать
+    context_object_name= 'news'
+    #extra_context = {'title': 'Главная'}
 
-#ренедерим страницу index.html
-def index(request):
-    news = News.objects.all()
-    context = {
-        'news': news,
-        'title': 'Список новостей',
-    }
-    return render(request, 'news/index.html', context=context)
+    def get_context_data(self, *, object_list=None, **kwargs): #переопределяем метод для вывода title в имени вкладки
+        context = super(HomeNews, self).get_context_data(**kwargs)
+        context['title'] = 'Главная страница'
+        return context
+
+    def get_queryset(self): #метод для фильтрования выводимых записей
+        return News.objects.filter(is_published=True) #выводим только опубликованные записи
+
+
+class NewsByCategory(ListView): #выводит статьи при выборе определенной категории
+    model = News
+    template_name ='news/home_news_list.html' #указываем какой шаблон использовать
+    context_object_name = 'news'
+    allow_empty = False #при несуществующей или пустой категории выводим 404
+
+    def get_context_data(self, *, object_list=None, **kwargs): #переопределяем метод для вывода названия категории в имени вкладки
+        context = super().get_context_data(**kwargs)
+        context['title'] = Category.objects.get(pk=self.kwargs['category_id'])
+        return context
+
+    def get_queryset(self): #метод для фильтрования выводимых записей
+        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True) #выводим записи только выбранной категории
+
+#функции для страниц
+# def index(request): #функция заменена на класс HomeNews
+#     news = News.objects.all()
+#     context = {
+#         'news': news,
+#         'title': 'Список новостей',
+#     }
+#     return render(request, 'news/index.html', context=context)
 
 
 def get_category(request, category_id): #переход по категориям из сайдбара

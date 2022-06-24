@@ -22,7 +22,7 @@ class NewsForm(forms.ModelForm): #класс для описания вида ф
         if re.match(r'\d', title): #ищем цифру в начале строки title
             raise ValidationError('Название не должно начинаться с цифры') #выбрасываем  exception при нахождении цифры в начале строки title
         return title
-    
+
     # title = forms.CharField(max_length=150, label='Заголовок:', #название
     #                         widget=forms.TextInput(attrs={
     #                             "class": "form-control"

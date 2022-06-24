@@ -14,15 +14,11 @@
         Категория: <a href="{{ news.item.category.get_absolute_url }}">{{ news.item.category }}</a><!--делаем кликабельным название категории-->
     </div>
     <div class="card-body">
-        <div class="media">
             {% if item.photo %} <!--если у статьи есть фото - выводим, иначе ничего не выводим-->
-            <img src="{{ news.item.photo.url }}" alt="Фото статьи" width="350" class="mr-3">
+            <img src="{{ news.item.photo.url }}" alt="Фото статьи" width="350" class="float-left mr-3">
             {% endif %}
-            <div class="media-body">
                 <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ news.item.title }}</h5> <!--чередование цветов заголовка-->
                 <p class="card-text">{{ news.item.content|safe|linebreaks }}</p>
-            </div>
-        </div>
 
     </div>
     <div class="card-footer text-muted">
