@@ -13,15 +13,10 @@
             {% if request.user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a></li>
             {% endif %}
-            <!--<li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>-->
         </ul>
+        <span class="navbar-text1">
+           <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Авторизация</a>
+        </span>
         <ul class="text-secondary">Cегодня {% now "d-m-Y H:i" %}</ul> <!--вывод текущей даты и времени(д-м-г ч-м)-->
     </div>
 </nav>

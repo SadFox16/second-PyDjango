@@ -1,0 +1,20 @@
+{% extends 'base.html' %} <!--наследуем шаблон base.html-->
+
+{% block title %}
+Регистрация нового пользователя: {{block.super}} <!--выводим тайтл страницы"-->
+{% endblock %}
+
+{% block sidebar %} <!--наследуем переопределяем сайдбар-->
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %} <!--наследуем и переопределяем контент для формы добавления новости-->
+
+<h1 class="h1_register">Регистрация нового пользователя</h1>
+<form class="register" method = "post"> <!--выводим форму регистрации-->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

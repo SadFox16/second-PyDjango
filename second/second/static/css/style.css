@@ -38,7 +38,7 @@ a.list-group-item{
 
 /* стили для навбара(верхней части сайта) */
 ul.text-secondary{
-    margin-left: 700px;
+    margin-left: 500px;
 }
 
 /* стили для формы добавления новости */
@@ -50,4 +50,29 @@ form.add_news{
 h1.h1_form{
     margin-left: 250px;
     margin-right: auto;
+}
+
+/* стили для формы регистрации */
+h1.h1_register{
+    margin-left: 100px;
+    margin-right: auto;
+    font-family: serif;
+    background-color: #ccc;
+}
+
+form.register{
+    font-family: serif;
+    margin-left: 100px;
+    background-color: #ccc;
+}
+
+/* стили для формы авторизации */
+h1.h1_login{
+    margin-left: 250px;
+    margin-right: auto;
+    font-family: serif;
+}
+
+form.login{
+    font-family: serif;
 }

@@ -1,0 +1,16 @@
+{% extends 'base.html' %} <!--наследуем шаблон base.html-->
+
+{% block title %}
+Авторизация: {{block.super}} <!--выводим тайтл страницы"-->
+{% endblock %}
+
+{% block sidebar %} <!--наследуем переопределяем сайдбар-->
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %} <!--наследуем и переопределяем контент для формы добавления новости-->
+<h1 class="h1_login">Авторизация</h1>
+
+
+
+{% endblock %}

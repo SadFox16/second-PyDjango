@@ -2,9 +2,31 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from .models import News, Category
-from .forms import NewsForm
+from .forms import NewsForm, UserRegistrationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.contrib import messages
+
+
+#функция для регистрации
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрировались!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'news/register.html', {'form':form})
+
+
+#функция для авторизации
+def login(request):
+    return render(request, 'news/login.html')
+
 
 #классы для страниц
 class HomeNews(ListView): #возвращает список новостей, переопределяем аттрибуты, остальной рендер за нас делает класс
