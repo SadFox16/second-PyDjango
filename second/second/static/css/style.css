@@ -41,6 +41,14 @@ ul.text-secondary{
     margin-left: 500px;
 }
 
+li.nav-item1{
+    margin-top: px;
+}
+
+li.nav-item2{
+    margin-left: 15px;
+}
+
 /* стили для формы добавления новости */
 form.add_news{
     font-family: serif;
