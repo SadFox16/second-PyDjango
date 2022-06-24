@@ -1,6 +1,8 @@
 #файл с формами приложения news
 from django import forms
 from .models import News
+import re
+from django.core.exceptions import ValidationError
 
 
 class NewsForm(forms.ModelForm): #класс для описания вида формы добавления новости
@@ -13,6 +15,14 @@ class NewsForm(forms.ModelForm): #класс для описания вида ф
             'content': forms.Textarea(attrs={"class": "form-control", "rows": 5}),
             'category': forms.Select(attrs={"class": "form-control"}),
         }
+
+    #пользовательский валидатор для поля title, чтобы заголовок не начинался с цифры
+    def clean_title(self):
+        title = self.cleaned_data['title'] #получаем title из словаря cleaned_data после стандартной валидации
+        if re.match(r'\d', title): #ищем цифру в начале строки title
+            raise ValidationError('Название не должно начинаться с цифры') #выбрасываем  exception при нахождении цифры в начале строки title
+        return title
+    
     # title = forms.CharField(max_length=150, label='Заголовок:', #название
     #                         widget=forms.TextInput(attrs={
     #                             "class": "form-control"
