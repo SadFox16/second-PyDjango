@@ -1,6 +1,7 @@
 # файл для пользовательских тегов
 from django import template
 from news.models import Category
+from django.db.models import Count
 
 register = template.Library()  # регистрируем пользовательский тег
 
@@ -12,5 +13,7 @@ def get_categories():  #функция для возврата категори�
 
 @register.inclusion_tag('news/list_categories.html')
 def show_categories(): #inclusion тег
-    categories = Category.objects.all()
+    #categories = Category.objects.all()
+    categories = Category.objects.annotate(cnt=Count('news')).filter(cnt__gt=0)
     return {"categories": categories}
+

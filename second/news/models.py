@@ -28,6 +28,7 @@ class News(models.Model): #таблица для новостей(вторичн
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True, verbose_name = 'Фото') #изображение новости
     is_published = models.BooleanField(default=True, verbose_name = 'Публикация') #опубликована ли запись
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, verbose_name='Категория') #foreign key для связи таблиц News и Category(ссылка на таблицу для связи, защита от удаления связанных данных, ...)
+    views_count = models.IntegerField(default=0) #кол-во просмотров (для агрегатных функций)
 
     def get_absolute_url(self): #метод, указывающий на конкретную страницу для построения ссылки
         return reverse('view_news', kwargs={"pk": self.pk})
@@ -38,6 +39,6 @@ class News(models.Model): #таблица для новостей(вторичн
     class Meta: #подкласс для мета-описания таблицы
         verbose_name = 'Новость' #именование таблицы в единственном числе
         verbose_name_plural = 'Новости' # именование таблицы во множественном числе
-        ordering = ['created_date'] #сортировка записей в таблице
+        ordering = ['-created_date'] #сортировка записей в таблице
 
 
