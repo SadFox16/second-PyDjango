@@ -21,8 +21,8 @@
             <img src="{{ item.photo.url }}" alt="Фото статьи" width="350" class="mr-3">
             {% endif %}
             <div class="media-body">
-                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h5>
                 <!--чередование цветов заголовка-->
+                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h5>
                 <p class="card-text">{{ item.content|linebreaks|truncatewords:60 }}</p>
                 <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
             </div>

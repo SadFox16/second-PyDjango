@@ -30,8 +30,9 @@ def add_news(request): #функция для формы добавления н
         form = NewsForm(request.POST) #принимаем данные из формы
         if form.is_valid(): #проверка валидации
            #print(form.cleaned_data) #при прохождении создаем словарь cleaned_data у формы, куда записываются все прошедшие валидацию данные
-            news = News.objects.create(**form.cleaned_data) #добавляем запись в бд из формы
-            return redirect(news) #перенаправляем после добавления новости через форму
+            # news = News.objects.create(**form.cleaned_data) #добавляем запись в бд из формы
+            news = form.save() #сохраняем данные из формы в news
+            return redirect(news) #перенаправляем после добавления новости через форму на созданную новость
     else:
-        form = NewsForm() #создаем пустую форму
+        form = NewsForm() #создаем пустую форму если данные пришли не POST-ом
     return render(request, 'news/add_news.html', {'form': form})
