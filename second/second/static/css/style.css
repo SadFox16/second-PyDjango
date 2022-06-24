@@ -1,5 +1,10 @@
 body{
     background-color: #ccc; /*стили для основного тела сайта*/
+    font-family: serif;
+}
+
+div.media-body{
+    font-family: serif;
 }
 
 .errorlist{
@@ -72,6 +77,7 @@ form.register{
     font-family: serif;
     margin-left: 100px;
     background-color: #ccc;
+    font-family: serif;
 }
 
 /* стили для формы авторизации */
