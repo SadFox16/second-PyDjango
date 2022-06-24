@@ -1,7 +1,7 @@
 <!--Экземпляр navbar для include-->
 <nav class="navbar navbar-expand-lg bg-light">
     <!--<div class="container-fluid">-->
-    <a class="navbar-brand" href="{% url 'home' %}">Новостной блог</a>  <!-- Верхняя строка страницы -->
+    <a class="navbar-brand">Новостной блог</a>  <!-- Верхняя строка страницы -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,14 +13,14 @@
             {% if request.user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a></li>
             {% endif %}
+            <!--<li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Заглушка</a></li>-->
         </ul>
         <ul class="text-secondary">Cегодня {% now "d-m-Y H:i" %}</ul> <!--вывод текущей даты и времени(д-м-г ч-м)-->
     </div>

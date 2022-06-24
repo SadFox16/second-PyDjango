@@ -13,3 +13,15 @@ body{
 div.breadcrumbs{
     background: #263228
 }
+
+div.content-related{
+    padding-right: 0px;
+}
+
+div.app-news{
+    width: 100%;
+}
+
+div.app-auth{
+    width: 100%;
+}

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .models import News, Category
 from .forms import NewsForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 #классы для страниц
 class HomeNews(ListView): #возвращает список новостей, переопределяем аттрибуты, остальной рендер за нас делает класс
@@ -11,6 +12,7 @@ class HomeNews(ListView): #возвращает список новостей, �
     template_name = 'news/home_news_list.html' #указываем какой шаблон использовать
     context_object_name = 'news'
     mixin_prop = 'hello world'
+    paginate_by = 10
     #extra_context = {'title': 'Главная'}
 
     def get_context_data(self, *, object_list=None, **kwargs): #переопределяем метод для вывода title в имени вкладки
@@ -28,6 +30,7 @@ class NewsByCategory(ListView): #выводит статьи при выборе
     template_name ='news/home_news_list.html' #указываем какой шаблон использовать
     context_object_name = 'news'
     allow_empty = False #при несуществующей или пустой категории выводим 404
+    paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs): #переопределяем метод для вывода названия категории в имени вкладки
         context = super().get_context_data(**kwargs)
