@@ -1,3 +1,86 @@
 body{
     background-color: #ccc; /*стили для основного тела сайта*/
 }
+
+.errorlist{
+    color: red; /*стили для маркеров обязательных полей формы*/
+}
+/*стили для кнопок переключения страниц*/
+button.page-item{
+    background: #007bff;
+    border-color: #007bff;
+    width: 100px;
+    border-radius: .25rem;
+}
+
+a.page-link{
+    background: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+ul.paginator1{ /* верхние кнопки навигации */
+    margin-top: 15px;
+    margin-left: 550px;
+    margin-right: auto;
+}
+
+ul.paginator2{ /* нижние кнопки навигации */
+    margin-left: 250px;
+    margin-right: auto;
+}
+
+/* стили для сайдбара с категориями */
+a.list-group-item{
+    margin-bottom: 10px;
+    width: 180px;
+}
+
+/* стили для навбара(верхней части сайта) */
+ul.text-secondary{
+    margin-left: 500px;
+}
+
+li.nav-item1{
+    margin-top: px;
+}
+
+li.nav-item2{
+    margin-left: 15px;
+}
+
+/* стили для формы добавления новости */
+form.add_news{
+    font-family: serif;
+    font-size: 18px;
+}
+
+h1.h1_form{
+    margin-left: 250px;
+    margin-right: auto;
+}
+
+/* стили для формы регистрации */
+h1.h1_register{
+    margin-left: 100px;
+    margin-right: auto;
+    font-family: serif;
+    background-color: #ccc;
+}
+
+form.register{
+    font-family: serif;
+    margin-left: 100px;
+    background-color: #ccc;
+}
+
+/* стили для формы авторизации */
+h1.h1_login{
+    margin-left: 250px;
+    margin-right: auto;
+    font-family: serif;
+}
+
+form.login{
+    font-family: serif;
+}

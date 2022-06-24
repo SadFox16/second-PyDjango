@@ -1,8 +1,20 @@
 from django.contrib import admin
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from .models import News, Category
 from django.utils.safestring import mark_safe
 
+
+class NewsAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = News
+        fields = '__all__'
+
+
 class NewsAdmin(admin.ModelAdmin): #класс для редактирования внешнего вида таблицы News в админке
+    form = NewsAdminForm
     list_display = ('id', 'title', 'created_date', 'category', 'updated_date', 'is_published') #что отображать в таблице на странице админки
     list_display_links = ('id', 'title') #какие поля записей станут ссылками
     search_fields = ('title', 'content') #по каким полям вести поиск

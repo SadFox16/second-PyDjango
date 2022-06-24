@@ -1,0 +1,27 @@
+/* Стили для админки */
+body{
+    background-color: #ccc; /*стили для основного тела админки сайта*/
+    font-family: serif;
+}
+
+#header{
+    background-color: #90a4ae;
+    color: #fff;
+    font-family: serif;
+}
+
+div.breadcrumbs{
+    background: #263228
+}
+
+div.content-related{
+    padding-right: 0px;
+}
+
+div.app-news{
+    width: 100%;
+}
+
+div.app-auth{
+    width: 100%;
+}
