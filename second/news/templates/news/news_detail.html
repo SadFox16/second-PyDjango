@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
             {% if item.photo %} <!--если у статьи есть фото - выводим, иначе ничего не выводим-->
-            <img src="{{ news_itemphoto.url }}" alt="Фото статьи" width="350" class="float-left mr-3">
+            <img src="{{ news_item.photo.url }}" alt="Фото статьи" width="350" class="float-left mr-3">
             {% endif %}
                 <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ news_item.title }}</h5> <!--чередование цветов заголовка-->
                 <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>

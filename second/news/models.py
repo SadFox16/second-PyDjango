@@ -30,7 +30,7 @@ class News(models.Model): #таблица для новостей(вторичн
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, verbose_name='Категория') #foreign key для связи таблиц News и Category(ссылка на таблицу для связи, защита от удаления связанных данных, ...)
 
     def get_absolute_url(self): #метод, указывающий на конкретную категорию для построения ссылки
-        return reverse('view_news', kwargs={"news_id": self.pk})
+        return reverse('view_news', kwargs={"pk": self.pk})
 
     def __str__(self): #строковое представление объекта для красивого отображения на странице
         return self.title

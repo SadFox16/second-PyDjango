@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import News, Category
 from .forms import NewsForm
 
@@ -33,6 +33,14 @@ class NewsByCategory(ListView): #выводит статьи при выборе
     def get_queryset(self): #метод для фильтрования выводимых записей
         return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True) #выводим записи только выбранной категории
 
+
+class ViewNews(DetailView): #класс для страницы просмотра новости
+    model = News #получаем все данные из таблицы News
+    #template_name = 'news/news_detail.html' #указываем какой шаблон использовать
+    #pk_url_kwarg = 'news_id'
+    context_object_name = 'news_item'
+
+
 #функции для страниц
 # def index(request): #функция заменена на класс HomeNews
 #     news = News.objects.all()
@@ -49,10 +57,10 @@ def get_category(request, category_id): #переход по категория�
     return render(request, 'news/category.html', {'news': news, 'category': category}) #передаем полученные переменные в шаблон category.html
 
 
-def view_news(request, news_id): #функция для просмотра новости
-   # news_item = News.objects.get(pk=news_id) #получаем запрошенную новость по id
-    news_item = get_object_or_404(News, pk=news_id) #выводим новость, иначе выдаем 404
-    return render(request, 'news/view_news.html', {"news_item": news_item})
+# def view_news(request, news_id): #функция для просмотра новости, заменена на класс ViewNews
+#    # news_item = News.objects.get(pk=news_id) #получаем запрошенную новость по id
+#     news_item = get_object_or_404(News, pk=news_id) #выводим новость, иначе выдаем 404
+#     return render(request, 'news/view_news.html', {"news_item": news_item})
 
 def add_news(request): #функция для формы добавления новости
     if request.method == 'POST':
